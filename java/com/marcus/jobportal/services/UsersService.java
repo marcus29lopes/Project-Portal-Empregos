@@ -4,6 +4,9 @@ package com.marcus.jobportal.services;
 import com.marcus.jobportal.entity.Users;
 import com.marcus.jobportal.repository.UsersRepository;
 import java.util.Date;
+import java.util.Optional;
+
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +23,8 @@ public class UsersService {
         users.setActive(true);
         users.setRegistrationDate(new Date(System.currentTimeMillis()));
         return (Users)this.usersRepository.save(users);
+    }
+    public Optional<Users> getUserByEmail(String email){
+        return usersRepository.findByEmail(email);
     }
 }
